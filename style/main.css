@@ -15,6 +15,10 @@ body {
   display: block;
   clear: both; }
 
+.center {
+    text-align: center;
+}
+
 h1.title {
   font-size: 80px;
   font-weight: bold;
@@ -151,8 +155,9 @@ hr {
   touch-action: none;
   background: #bbada0;
   border-radius: 6px;
-  width: 500px;
-  height: 500px;
+  width: 380px;
+  height: 380px;
+  margin-left: 62.5px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
@@ -501,6 +506,10 @@ hr {
 
 .game-explanation {
   margin-top: 50px; }
+
+#credits {
+    margin-top: 2em;
+}
 
 @media screen and (max-width: 520px) {
   html, body {
