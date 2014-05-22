@@ -2,8 +2,8 @@
 
 # Class to control the LEDs.
 
-# All colors are RGB in [0,255] but we have to send values between [0,127] to the
-# LEDs.
+# All colors are RGB in [0,255] but we have to send values between [0,127]
+# to the LEDs.
 import colors
 import time
 
@@ -12,7 +12,7 @@ class Control():
     def __init__(self, ser, nb_leds,
                  corrections={'r': 1.0, 'g': 1.0, 'b': 1.0},
                  brightness=1.0,
-                 nb_steps_fading=15):
+                 nb_steps_fading=25):
         """Params:
             * ser is an open pySerial object
             * nb_leds is the total number of LEDs

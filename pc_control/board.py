@@ -20,8 +20,8 @@ class Board(object):
         self.__goal = goal
         self.__won = False
         self.cells = [[0]*self.__size for _ in xrange(self.__size)]
-        self.addTile()
-        self.addTile()
+        self.add_tile()
+        self.add_tile()
 
     def size(self):
         """return the board size"""
@@ -37,7 +37,7 @@ class Board(object):
         """
         return self.__won
 
-    def canMove(self):
+    def can_move(self):
         """
         test if a move is possible
         """
@@ -46,9 +46,9 @@ class Board(object):
 
         for y in self.__size_range:
             for x in self.__size_range:
-                c = self.getCell(x, y)
-                if (x < self.__size-1 and c == self.getCell(x+1, y)) \
-                   or (y < self.__size-1 and c == self.getCell(x, y+1)):
+                c = self.get_cell(x, y)
+                if (x < self.__size-1 and c == self.get_cell(x+1, y)) \
+                   or (y < self.__size-1 and c == self.get_cell(x, y+1)):
                     return True
 
         return False
@@ -57,9 +57,9 @@ class Board(object):
         """
         return true if the game is filled
         """
-        return len(self.getEmptyCells()) == 0
+        return len(self.get_empty_cells()) == 0
 
-    def addTile(self, value=None, choices=([2]*9+[4])):
+    def add_tile(self, value=None, choices=([2]*9+[4])):
         """
         add a random tile in an empty cell
         value: value of the tile to add.
@@ -70,43 +70,43 @@ class Board(object):
             choices = [value]
 
         v = random.choice(choices)
-        empty = self.getEmptyCells()
+        empty = self.get_empty_cells()
         if empty:
             x, y = random.choice(empty)
-            self.setCell(x, y, v)
+            self.set_cell(x, y, v)
 
-    def getCell(self, x, y):
+    def get_cell(self, x, y):
         """return the cell value at x,y"""
         return self.cells[y][x]
 
-    def setCell(self, x, y, v):
+    def set_cell(self, x, y, v):
         """set the cell value at x,y"""
         self.cells[y][x] = v
 
-    def getLine(self, y):
+    def get_line(self, y):
         """return the y-th line, starting at 0"""
         return self.cells[y]
 
-    def getCol(self, x):
+    def get_col(self, x):
         """return the x-th column, starting at 0"""
-        return [self.getCell(x, i) for i in self.__size_range]
+        return [self.get_cell(x, i) for i in self.__size_range]
 
-    def setLine(self, y, l):
+    def set_line(self, y, l):
         """set the y-th line, starting at 0"""
         self.cells[y] = l[:]
 
-    def setCol(self, x, l):
+    def set_col(self, x, l):
         """set the x-th column, starting at 0"""
         for i in xrange(0, self.__size):
-            self.setCell(x, i, l[i])
+            self.set_cell(x, i, l[i])
 
-    def getEmptyCells(self):
+    def get_empty_cells(self):
         """return a (x, y) pair for each empty cell"""
         return [(x, y)
                 for x in self.__size_range
-                for y in self.__size_range if self.getCell(x, y) == 0]
+                for y in self.__size_range if self.get_cell(x, y) == 0]
 
-    def __collapseLineOrCol(self, line, d):
+    def __collapse_line_or_col(self, line, d):
         """
         Merge tiles in a line or column according to a direction and return a
         tuple with the new line and the score for the move on this line
@@ -133,7 +133,7 @@ class Board(object):
 
         return (line, pts)
 
-    def __moveLineOrCol(self, line, d):
+    def __move_line_or_col(self, line, d):
         """
         Move a line or column to a given direction (d)
         """
@@ -147,9 +147,9 @@ class Board(object):
         move and return the move score
         """
         if d == Board.LEFT or d == Board.RIGHT:
-            chg, get = self.setLine, self.getLine
+            chg, get = self.set_line, self.get_line
         elif d == Board.UP or d == Board.DOWN:
-            chg, get = self.setCol, self.getCol
+            chg, get = self.set_col, self.get_col
         else:
             return 0
 
@@ -160,12 +160,12 @@ class Board(object):
             # save the original line/col
             origin = get(i)
             # move it
-            line = self.__moveLineOrCol(origin, d)
+            line = self.__move_line_or_col(origin, d)
             # merge adjacent tiles
-            collapsed, pts = self.__collapseLineOrCol(line, d)
+            collapsed, pts = self.__collapse_line_or_col(line, d)
             # move it again (for when tiles are merged, because empty cells are
             # inserted in the middle of the line/col)
-            new = self.__moveLineOrCol(collapsed, d)
+            new = self.__move_line_or_col(collapsed, d)
             # set it back in the board
             chg(i, new)
             # did it change?
@@ -175,6 +175,6 @@ class Board(object):
 
         # don't add a new tile if nothing changed
         if moved and add_tile:
-            self.addTile()
+            self.add_tile()
 
         return score
