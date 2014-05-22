@@ -1,4 +1,3 @@
-#!/usr/bin/env python2
 # -*- coding: utf8 -*-
 
 # Class to control the LEDs.
