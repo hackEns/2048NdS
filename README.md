@@ -3,13 +3,16 @@ Nuit des Sciences 2014
 
 Codes, schematics etc. pour l'installation de LEDs (montage Ledhill) pour la Nuit des Sciences 2014 à l'Ens.
 
-# Files
+# Structure
 
-**TODO**
+* `frontend/` : web interface for playing
+* `leds/` : code running on the ATmega on the LEDs
+* `pc_control/` : python scripts to send instructions to the LEDs
+* `tests/` : various tests files
 
 # License
 
-All the source codes, unless explicitly specified otherwise is under MIT License.
+All the source codes, unless explicitly specified otherwise are under MIT License.
 
 ```
 Copyright (c) 2014 hackens (http://hackens.org)
