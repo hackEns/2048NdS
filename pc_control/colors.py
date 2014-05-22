@@ -17,13 +17,13 @@ def rgb255_to_hsv(color):
     m = min([color[i] for i in color])
 
     if m == M:
-        color_out['t'] = 0.0
+        color_out['h'] = 0.0
     elif M == color['r']:
-        color_out['t'] = (60 * (color['g'] - color['b']) / M - m + 360) % 360
+        color_out['h'] = (60 * (color['g'] - color['b']) / M - m + 360) % 360
     elif M == color['g']:
-        color_out['t'] = (60 * (color['b'] - color['r']) / M - m + 120)
+        color_out['h'] = (60 * (color['b'] - color['r']) / M - m + 120)
     elif M == color['b']:
-        color_out['t'] = (60 * (color['r'] - color['g']) / M - m + 240)
+        color_out['h'] = (60 * (color['r'] - color['g']) / M - m + 240)
 
     if M == 0.0:
         color_out['s'] = 0.0
@@ -43,8 +43,8 @@ def hsv_to_rgb255(color):
     params: color_tsv is a {h, s, v} dict
     returns: a color dict
     """
-    qd = int(color['t'] / 60) % 6
-    f = color['t'] / 60 - qd
+    qd = int(color['h'] / 60) % 6
+    f = color['h'] / 60 - qd
     l = color['v'] * (1 - color['s'])
     m = color['v'] * (1 - f * color['s'])
     n = color['v'] * (1 - (1 - f) * color['s'])
@@ -68,3 +68,19 @@ def rgb255_to_rgb127(color):
 def rgb127_to_rgb255(color):
     """Converts a RGB color indexed in [0,127] to one index in [0,255]"""
     return {'r': color['r'] << 1, 'g': color['g'] << 1, 'b': color['b'] << 1}
+
+
+def fading(src_color, dest_color, nb_steps):
+    """Returns a list of steps colors to interpolate between src_color and
+    dest_color (both RGB255) with a nb_steps steps fading"""
+    src_color_hsv = rgb255_to_hsv(src_color)
+    dest_color_hsv = rgb255_to_hsv(dest_color)
+
+    step_size_h = float(dest_color_hsv['h'] - src_color_hsv['h']) / nb_steps
+    step_size_s = float(dest_color_hsv['s'] - src_color_hsv['s']) / nb_steps
+    step_size_v = float(dest_color_hsv['v'] - src_color_hsv['v']) / nb_steps
+
+    return [hsv_to_rgb255({'h': src_color_hsv['h'] + i*step_size_h,
+                           's': src_color_hsv['s'] + i*step_size_s,
+                           'v': src_color_hsv['v'] + i*step_size_v})
+            for i in xrange(1, nb_steps + 1)]
