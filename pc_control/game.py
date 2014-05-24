@@ -6,7 +6,8 @@
 # TODO : best score ?
 
 import board
-import control
+import sys
+import tools
 
 
 class Game():
@@ -28,12 +29,8 @@ class Game():
                  brightness=1.0):
         # ser must be an opened pyserial object
         self.brd = board.Board(goal=goal, size=size)
-        self.ctrl = control.Control(ser,
-                                    size**2,
-                                    corrections=corrections,
-                                    brightness=brightness)
         self.score = 0
- 
+
     def end(self):
         """Returns True if the game is finished"""
         return not (self.brd.won() or self.brd.can_move())
@@ -42,7 +39,7 @@ class Game():
         """Updates the current score adding it the specified
         amount of points
         """
-        self.score += update_score()
+        self.score += points
 
     def save_score(self):
         """Saves the current score"""
@@ -53,3 +50,8 @@ class Game():
         """Main loop"""
         # TODO
         raise Exception("TODO")
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        tools.error("Usage: "+sys.argv[0]+" SERVER_IP")
+    # TODO
