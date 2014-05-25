@@ -60,7 +60,7 @@ class Control():
         params: color a {r, g, b} dict
         returns: a color dict
         """
-        return {i: color[i] * self.corrections[i] >> 1 for i in color}
+        return {i: int(color[i] * self.corrections[i]) >> 1 for i in color}
 
     def send_color(self, id, color, fading=False, fading_duration=1):
         """Corrects the color and send it over serial
@@ -77,12 +77,12 @@ class Control():
         data = []
         if fading is not False:
             if isinstance(fading, (int, long)):
-                steps = colors.fading(self.current_color[id],
+                steps = colors.fading(self.current_colors[id],
                                       color,
                                       fading)
                 wait = float(fading_duration) / fading
             else:
-                steps = colors.fading(self.current_color[id],
+                steps = colors.fading(self.current_colors[id],
                                       color,
                                       self.nb_steps_fading)
                 wait = float(fading_duration) / self.nb_steps_fading
@@ -98,7 +98,7 @@ class Control():
             self.ser.write(chr(data[i]))
             if i % 4 == 0:
                 time.sleep(wait)
-        self.current_color[id] = color
+        self.current_colors[id] = color
 
     def send_colors(self, colors, starting=0, fading=False, fading_duration=1):
         """Send colors instruction to a bunch of LEDs
@@ -111,28 +111,28 @@ class Control():
         """
         if fading is not False:
             if isinstance(fading, (int, long)):
-                steps = {id: colors.fading(self.current_color[id],
+                steps = {int(id): colors.fading(self.current_colors[id],
                                            colors[id],
                                            fading)
                          for id in colors}
                 wait = float(fading_duration) / fading
             else:
-                steps = {id: colors.fading(self.current_color[id],
+                steps = {int(id): colors.fading(self.current_colors[id],
                                            colors[id],
                                            self.nb_steps_fading)
                          for id in colors}
                 wait = float(fading_duration) / self.nb_steps_fading
         else:
-            steps = {id: [colors[id]] for id in colors}
+            steps = {int(id): [colors[id]] for id in colors}
             wait = 0
 
-        for k in xrange(len(steps[0])):
+        for k in xrange(len(steps[steps.iterkeys().next()])):
             for i in steps:
                 # Send the color to the individual LED, and duration is 0 as
                 # it is handled inside this function (globally and not per LED)
                 if i + starting > self.nb_leds:
                     continue  # No need to send useless data
-                self.send_color(i + starting, steps[i][k], duration=0)
+                self.send_color(i + starting, steps[i][k], fading_duration=0)
             time.sleep(wait)
 
     def reset(self):
