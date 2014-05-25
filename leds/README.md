@@ -1,7 +1,7 @@
 Code sur les ATmega
 ====
 
-Quelques notes sont regroupées ci-dessous.
+Some notes on the PCBs and the code:
 
 ## Pins
 
@@ -9,42 +9,42 @@ Quelques notes sont regroupées ci-dessous.
 * 16 (datasheet ATmel) == 10 (Arduino) : Led G
 * 17 (datasheet ATmel) == 11 (Arduino) : Led B
 
-## Paquets serial
+## Serial packets
 
-Un paquet serial a la forme suivante (4 bytes) :
+A serial packet is as follow (4 bytes):
 
 ```
-synchro (= 1) | fonction | compteur
+synchro (= 1) | function |  counter
  1bit         |  1 bit   |  6 bits
 ```
 
 ```
-synchro (= 0) | couleurR
+synchro (= 0) |  colorR
  1bit         |  7 bits
 ```
 
 ```
-synchro (= 0) | couleurG
+synchro (= 0) |  colorG
  1bit         |  7 bits
 ```
 
 ```
-synchro (= 0) | couleurB
+synchro (= 0) |  colorB
  1bit         |  7 bits
 ```
 
-## Fonctions
+## Functions
 
-* `0b0` : Switch immédiat
-* `0b1` : Broadcast (traite le paquet et le forward quand même avec compteur nul)
+* `0b0` : Immediate switch
+* `0b1` : Broadcast (treat the packet but still forward it with null counter)
 
-## Divers
+## Misc
 
-* serialEvent est appelée automatiquement à la fin de loop() si des données sont dispos sur le RX.
-* Lors de l'arrivée d'un header, `serial_i = compteur`.
-* `serial_i décrit l'état
-    * `-1` => attente de header
-    * `0` => en attente des données à traiter pour la led rouge
-    * `1` => en attente des données à traiter pour la led bleue
-    * `2` => en attente des données à traiter pour la led verte
-* Pas besoin d'appel à pinMode avant un analogWrite.
+* serialEvent is automatically called at the end of `loop()` if data is available on RX.
+* When a header arrives, `serial_i = counter`
+* `serial_i` describes the state:
+    * `-1` => waiting for a header packet
+    * `0` => waiting for data for red LED
+    * `1` => waiting for data for blue LED
+    * `2` => waiting for data for green LED
+* No need to call `pinMode` before an `analogWrite`

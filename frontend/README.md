@@ -1,15 +1,26 @@
-# 2048
+# 256
 
 This is a modified version of [2048](https://github.com/gabrielecirulli/2048) for our project.
 
+It runs exactly as the original one. Modifications are:
+* Smaller goal (256 instead of 2048) because it runs on a 3x3 board instead of 4x4.
+* Send AJAX queries to the server to use it as a controller for our setup.
+
+## License
+
 ```
 /*
- * ----------------------------------------------------------------------------
- * "THE BEER-WARE LICENSE" (Revision 42):
- * <phk@FreeBSD.ORG> wrote this file. As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp
- * ----------------------------------------------------------------------------
+ * --------------------------------------------------------------------------------
+ * "THE NO-ALCOHOL BEER-WARE LICENSE" (Revision 42):
+ * Phyks (webmaster@phyks.me) wrote or updated these files for hackEns. As long
+ * as you retain this notice you can do whatever you want with this stuff 
+ * (and you can also do whatever you want with this stuff without retaining it, 
+ * but that's not cool...).
+ *
+ * If we meet some day, and you think this stuff is worth it, you can buy us a 
+ * <del>beer</del> soda in return.
+ *                                                              Phyks for hackEns
+ * ---------------------------------------------------------------------------------
  */
 ```
 
