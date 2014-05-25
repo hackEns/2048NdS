@@ -37,6 +37,7 @@ class Game():
         self.server_address = server_address
         self.game_controller = game_controller()
         self.nick = nick
+        self.size = size
 
     def end(self):
         """Returns True if the game is finished"""
@@ -51,7 +52,7 @@ class Game():
     def save_score(self):
         """Saves the current score"""
         with open(self.SCORES_FILE, 'a') as fh:
-            fh.write(self.nick+"\t"+self.score)
+            fh.write(self.nick+"\t"+str(self.score))
         # Send to remote server
         params = self.REMOTE_SCORE_PARAMS
         params["nick"] = self.nick
@@ -70,21 +71,32 @@ class Game():
         # TODO
         raise Exception("TODO")
 
-    def send_instructions(self):
+    def get_diff(self):
+        """Returns the difference between previous and current state"""
+        data = {"fading": False, "colors": {}}
+        data["colors"] = {self.size*k['x']+k['y']: self.COLORS[k["value"]]
+                          for k in self.brd.get_diff()}
+        return data
+
+    def default_colors(self):
+        return {"fading": False, "colors": {k: self.DEFAULT_COLOR for k in
+                                            xrange(self.size**2)}}
+
+    def send_instructions(self, data):
         """Sends instructions to the LEDs server to display the current
         configuration
+
+        params:
+            data is a dict {fading: bool, colors: {}}, cf get_diff
         """
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         try:
             sock.connect(self.server_address)
-            data = {"fading": False, "colors": {}}
-            data["colors"] = {self.size*k['x']+k['y']: self.COLORS[k["value"]]
-                              for k in self.brd.get_diff()}
             data = json.dumps(data) + "\n"
             sock.sendall(data)
             received = sock.recv(1024)
-            if received != len(data.strip()):
+            if int(received) != len(data.strip()):
                 tools.error("Error while sending instructions for LEDs")
         finally:
             sock.close()
@@ -107,10 +119,11 @@ class Game():
 
     def loop(self):
         """Main loop"""
+        self.send_instructions(self.default_colors())
         while True:
             if self.end():
                 break
-            self.send_instructions()
+            self.send_instructions(self.get_diff())
             m = self.readMove()
             self.update_score(self.brd.move(m))
         self.save_score()
@@ -126,6 +139,7 @@ class Game():
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         tools.error("Usage: "+sys.argv[0]+" SERVER_IP")
+        sys.exit(1)
     HOST = sys.argv[1]
     PORT = 4242
 

@@ -6,7 +6,6 @@
 # to the LEDs.
 import colors
 import serial
-import sys
 import time
 import tools
 
@@ -33,14 +32,13 @@ class Control():
 
         self.serial_port = serial_port
         self.ser = serial.Serial(port=self.serial_port, baudrate=115200)
-        try:
-            self.ser.open()
-        except Exception, e:
-            tools.error("Error opening serial port: " + str(e))
-            sys.exit(1)
+        if not self.ser.isOpen():
+            try:
+                self.ser.open()
+            except Exception, e:
+                tools.error("Error opening serial port: " + str(e))
         if not self.ser.isOpen():
             tools.error("Serial port not opened")
-            sys.exit(1)
         self.ser.flushInput()
         self.ser.flushOutput()
 

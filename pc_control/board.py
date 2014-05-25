@@ -189,5 +189,5 @@ class Board(object):
         for x in xrange(self.__size):
             for y in xrange(self.__size):
                 if self.cells[y][x] != self.old_cells[y][x]:
-                    diff.append([{'x': x, 'y': y, "value": self.cells[y][x]}])
+                    diff.append({'x': x, 'y': y, "value": self.cells[y][x]})
         return diff
