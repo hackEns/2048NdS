@@ -15,6 +15,7 @@ import tools
 
 class Game():
     COLORS = {
+        0: {'r': 0, 'g': 0, 'b': 0},
         2: {'r': 255, 'g': 255, 'b': 255},
         4: {'r': 255, 'g': 255, 'b': 255},
         8: {'r': 255, 'g': 255, 'b': 255},
@@ -25,7 +26,6 @@ class Game():
         256: {'r': 255, 'g': 255, 'b': 255},
         512: {'r': 255, 'g': 255, 'b': 255}
     }
-    DEFAULT_COLOR = {'r': 0, 'g': 0, 'b': 0}
     SCORES_FILE = "scores.dat"
     REMOTE_SCORES_URL = "http://hackens.org/NdS/"
     REMOTE_SCORES_PARAMS = {'api_key': "API_KEY"}
@@ -54,7 +54,7 @@ class Game():
         with open(self.SCORES_FILE, 'a') as fh:
             fh.write(self.nick+"\t"+str(self.score))
         # Send to remote server
-        params = self.REMOTE_SCORE_PARAMS
+        params = self.REMOTE_SCORES_PARAMS
         params["nick"] = self.nick
         params["score"] = self.score
         r = requests.get(self.REMOTE_SCORES_URL, params=params)
@@ -78,8 +78,8 @@ class Game():
                           for k in self.brd.get_diff()}
         return data
 
-    def default_colors(self):
-        return {"fading": False, "colors": {k: self.DEFAULT_COLOR for k in
+    def initialize_leds(self):
+        return {"fading": False, "colors": {k: self.COLORS[0] for k in
                                             xrange(self.size**2)}}
 
     def send_instructions(self, data):
@@ -89,6 +89,9 @@ class Game():
         params:
             data is a dict {fading: bool, colors: {}}, cf get_diff
         """
+        if len(data["colors"]) == 0:
+            return
+
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         try:
@@ -119,7 +122,7 @@ class Game():
 
     def loop(self):
         """Main loop"""
-        self.send_instructions(self.default_colors())
+        self.send_instructions(self.initialize_leds())
         while True:
             if self.end():
                 break

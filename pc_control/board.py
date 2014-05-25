@@ -157,7 +157,7 @@ class Board(object):
         moved = False
         score = 0
 
-        self.old_cells = self.cells
+        self.old_cells = list(self.cells)
 
         for i in self.__size_range:
             # save the original line/col
