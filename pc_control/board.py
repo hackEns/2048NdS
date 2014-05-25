@@ -20,6 +20,7 @@ class Board(object):
         self.__goal = goal
         self.__won = False
         self.cells = [[0]*self.__size for _ in xrange(self.__size)]
+        self.old_cells = [[0]*self.__size for _ in xrange(self.__size)]
         self.add_tile()
         self.add_tile()
 
@@ -156,6 +157,8 @@ class Board(object):
         moved = False
         score = 0
 
+        self.old_cells = self.cells
+
         for i in self.__size_range:
             # save the original line/col
             origin = get(i)
@@ -178,3 +181,13 @@ class Board(object):
             self.add_tile()
 
         return score
+
+    def get_diff(self):
+        """Returns the difference between the actual board and the board as it
+        was before the last move"""
+        diff = []
+        for x in xrange(self.__size):
+            for y in xrange(self.__size):
+                if self.cells[y][x] != self.old_cells[y][x]:
+                    diff.append([{'x': x, 'y': y, "value": self.cells[y][x]}])
+        return diff

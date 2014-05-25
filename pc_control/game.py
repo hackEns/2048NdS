@@ -7,6 +7,7 @@ import board
 import game_controllers.keyboard_controller as kb_ctrl
 # TODO : web controller + smartphone controller
 import json
+import requests
 import socket
 import sys
 import tools
@@ -25,7 +26,9 @@ class Game():
         512: {'r': 255, 'g': 255, 'b': 255}
     }
     DEFAULT_COLOR = {'r': 0, 'g': 0, 'b': 0}
-    SCORES_FILE = "TODO"  # TODO
+    SCORES_FILE = "scores.dat"
+    REMOTE_SCORES_URL = "http://hackens.org/NdS/"
+    REMOTE_SCORES_PARAMS = {'api_key': "API_KEY"}
 
     def __init__(self, server_address, game_controller, nick,
                  goal=256, size=3):
@@ -47,6 +50,23 @@ class Game():
 
     def save_score(self):
         """Saves the current score"""
+        with open(self.SCORES_FILE, 'a') as fh:
+            fh.write(self.nick+"\t"+self.score)
+        # Send to remote server
+        params = self.REMOTE_SCORE_PARAMS
+        params["nick"] = self.nick
+        params["score"] = self.score
+        r = requests.get(self.REMOTE_SCORES_URL, params=params)
+        if r.status_code != 200 or 'ack' not in r.text:
+            tools.error("Unable to post high score.")
+
+    def won_animation(self):
+        """Handle the animation when the player wins"""
+        # TODO
+        raise Exception("TODO")
+
+    def game_over_animation(self):
+        """Handle the animation when the player looses"""
         # TODO
         raise Exception("TODO")
 
@@ -58,11 +78,14 @@ class Game():
 
         try:
             sock.connect(self.server_address)
-            data = "TODO"
-            sock.sendall(json.dumps(data) + "\n")
+            data = {"fading": False, "colors": {}}
+            data["colors"] = {self.size*k['x']+k['y']: self.COLORS[k["value"]]
+                              for k in self.brd.get_diff()}
+            data = json.dumps(data) + "\n"
+            sock.sendall(data)
             received = sock.recv(1024)
-            # TODO check len received
-            # TODO
+            if received != len(data.strip()):
+                tools.error("Error while sending instructions for LEDs")
         finally:
             sock.close()
 
@@ -85,17 +108,18 @@ class Game():
     def loop(self):
         """Main loop"""
         while True:
-            if not self.end():
+            if self.end():
                 break
-            m = self.readMove()
             self.send_instructions()
+            m = self.readMove()
             self.update_score(self.brd.move(m))
         self.save_score()
-        # TODO : Special kitsch blink
         if self.brd.won():
             print('You won')
+            self.won_animation()
         else:
             print('Game over')
+            self.game_over_animation()
         return self.score
 
 
