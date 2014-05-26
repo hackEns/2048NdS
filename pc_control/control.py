@@ -3,11 +3,11 @@
 # -----------------------------------------------------------------------------
 # "THE NO-ALCOHOL BEER-WARE LICENSE" (Revision 42):
 # Phyks (webmaster@phyks.me) wrote or updated these files for hackEns. As long
-# as you retain this notice you can do whatever you want with this stuff 
-# (and you can also do whatever you want with this stuff without retaining it, 
+# as you retain this notice you can do whatever you want with this stuff
+# (and you can also do whatever you want with this stuff without retaining it,
 # but that's not cool...).
 #
-# If we meet some day, and you think this stuff is worth it, you can buy us a 
+# If we meet some day, and you think this stuff is worth it, you can buy us a
 # <del>beer</del> soda in return.
 #                                                       Phyks for hackEns
 # -----------------------------------------------------------------------------
@@ -125,14 +125,14 @@ class Control():
         if fading is not False:
             if isinstance(fading, (int, long)):
                 steps = {int(id): colors.fading(self.current_colors[id],
-                                           colors[id],
-                                           fading)
+                                                colors[id],
+                                                fading)
                          for id in colors}
                 wait = float(fading_duration) / fading
             else:
                 steps = {int(id): colors.fading(self.current_colors[id],
-                                           colors[id],
-                                           self.nb_steps_fading)
+                                                colors[id],
+                                                self.nb_steps_fading)
                          for id in colors}
                 wait = float(fading_duration) / self.nb_steps_fading
         else:

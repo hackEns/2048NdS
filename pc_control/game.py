@@ -9,11 +9,11 @@
 # -----------------------------------------------------------------------------
 # "THE NO-ALCOHOL BEER-WARE LICENSE" (Revision 42):
 # Phyks (webmaster@phyks.me) wrote or updated these files for hackEns. As long
-# as you retain this notice you can do whatever you want with this stuff 
-# (and you can also do whatever you want with this stuff without retaining it, 
+# as you retain this notice you can do whatever you want with this stuff
+# (and you can also do whatever you want with this stuff without retaining it,
 # but that's not cool...).
 #
-# If we meet some day, and you think this stuff is worth it, you can buy us a 
+# If we meet some day, and you think this stuff is worth it, you can buy us a
 # <del>beer</del> soda in return.
 #                                                       Phyks for hackEns
 # -----------------------------------------------------------------------------
@@ -76,9 +76,12 @@ class Game():
         params = self.REMOTE_SCORES_PARAMS
         params["nick"] = self.nick
         params["score"] = self.score
-        r = requests.get(self.REMOTE_SCORES_URL, params=params)
-        if r.status_code != 200 or 'ack' not in r.text:
-            tools.error("Unable to post high score.")
+        try:
+            r = requests.get(self.REMOTE_SCORES_URL, params=params)
+            if r.status_code != 200 or 'ack' not in r.text:
+                tools.error("Unable to post high score.")
+        except requests.exceptions.ConnectionError as e:
+            tools.error("Network error when submitting high score:"+str(e))
 
     def won_animation(self):
         """Handle the animation when the player wins"""
