@@ -1,9 +1,17 @@
 # -*- coding: utf8 -*-
 
-# Class to control the LEDs.
+# -----------------------------------------------------------------------------
+# "THE NO-ALCOHOL BEER-WARE LICENSE" (Revision 42):
+# Phyks (webmaster@phyks.me) wrote or updated these files for hackEns. As long
+# as you retain this notice you can do whatever you want with this stuff 
+# (and you can also do whatever you want with this stuff without retaining it, 
+# but that's not cool...).
+#
+# If we meet some day, and you think this stuff is worth it, you can buy us a 
+# <del>beer</del> soda in return.
+#                                                       Phyks for hackEns
+# -----------------------------------------------------------------------------
 
-# All colors are RGB in [0,255] but we have to send values between [0,127]
-# to the LEDs.
 import colors
 import serial
 import time
@@ -11,6 +19,11 @@ import tools
 
 
 class Control():
+    """Class to control the LEDs by sending instructions over serial.
+
+    All colors are RGB in [0,255] but we have to send values between [0,127]
+    to the LEDs.
+    """
     def __enter__(self):
         return self
 
@@ -142,6 +155,7 @@ class Control():
                 self.ser.write(chr(i))
 
     def close(self):
+        """Closes the serial communication"""
         if self.ser.isOpen():
             self.ser.close()
 

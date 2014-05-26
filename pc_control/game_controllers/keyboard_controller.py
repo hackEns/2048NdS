@@ -1,5 +1,10 @@
 # -*- coding: utf8 -*-
 
+# File from https://github.com/bfontaine/term2048
+# Original license: MIT License, bfontaine:
+#    https://github.com/bfontaine/term2048/blob/master/LICENSE
+
+
 try:
     import termios
 except ImportError:

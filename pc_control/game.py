@@ -2,6 +2,22 @@
 # -*- coding: utf8 -*-
 
 # Code based on https://github.com/bfontaine/term2048
+# Original license: MIT License, bfontaine:
+#    https://github.com/bfontaine/term2048/blob/master/LICENSE
+
+# Modifications licensed under:
+# -----------------------------------------------------------------------------
+# "THE NO-ALCOHOL BEER-WARE LICENSE" (Revision 42):
+# Phyks (webmaster@phyks.me) wrote or updated these files for hackEns. As long
+# as you retain this notice you can do whatever you want with this stuff 
+# (and you can also do whatever you want with this stuff without retaining it, 
+# but that's not cool...).
+#
+# If we meet some day, and you think this stuff is worth it, you can buy us a 
+# <del>beer</del> soda in return.
+#                                                       Phyks for hackEns
+# -----------------------------------------------------------------------------
+
 
 import board
 import game_controllers.keyboard_controller as kb_ctrl
@@ -14,6 +30,9 @@ import tools
 
 
 class Game():
+    """The class that handles the game itself and send instructions to the LEDs
+    accordingly
+    """
     COLORS = {
         0: {'r': 0, 'g': 0, 'b': 0},
         2: {'r': 255, 'g': 255, 'b': 255},
@@ -79,6 +98,9 @@ class Game():
         return data
 
     def initialize_leds(self):
+        """Returns a dict with the default color to send to the LEDs with
+        send_instructions()
+        """
         return {"fading": False, "colors": {k: self.COLORS[0] for k in
                                             xrange(self.size**2)}}
 

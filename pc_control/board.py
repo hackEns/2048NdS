@@ -1,6 +1,23 @@
 # -*- coding: UTF-8 -*-
 
 # Modified version of https://github.com/bfontaine/term2048
+# Original license: MIT License, bfontaine:
+#    https://github.com/bfontaine/term2048/blob/master/LICENSE
+
+# Modifications licensed under:
+# -----------------------------------------------------------------------------
+# "THE NO-ALCOHOL BEER-WARE LICENSE" (Revision 42):
+# Phyks (webmaster@phyks.me) wrote or updated these files for hackEns. As long
+# as you retain this notice you can do whatever you want with this stuff 
+# (and you can also do whatever you want with this stuff without retaining it, 
+# but that's not cool...).
+#
+# If we meet some day, and you think this stuff is worth it, you can buy us a 
+# <del>beer</del> soda in return.
+#                                                       Phyks for hackEns
+# -----------------------------------------------------------------------------
+
+
 
 import random
 
