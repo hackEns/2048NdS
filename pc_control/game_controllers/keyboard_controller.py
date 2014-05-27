@@ -4,6 +4,9 @@
 # Original license: MIT License, bfontaine:
 #    https://github.com/bfontaine/term2048/blob/master/LICENSE
 
+# This is the file and class to use to control the game with a classical
+# keyboard on the game server computer.
+
 
 try:
     import termios
@@ -66,7 +69,9 @@ else:
 
 
 class KeyboardController():
+    """Controller class"""
     def get(self):
+        """Method to get the next move (blocking until a move is returned)"""
         m = getKey()
         if m == UP:
             return "UP"

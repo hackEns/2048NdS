@@ -18,6 +18,15 @@ The game server uses a game controller to get events and update its status. Thes
 3. Play
 
 
+## Available controllers
+
+Edit the `game.py` file to use the controller you want. By default, it uses the `KeyboardController`.
+
+Available controllers are:
+* `KeyboardController()` to control the game using the keyboard (and the arrow keys) on the game server.
+* `WebController()` to display the 2048 web interface and control the game directly in the browser.
+
+
 ## License
 
 ```

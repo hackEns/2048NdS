@@ -167,6 +167,7 @@ class Game():
         return self.score
 
     def close(self):
+        """Handle the cleaning, if necessary"""
         if hasattr(self.game_controller, 'close'):
             self.game_controller.close()
 
