@@ -21,7 +21,7 @@
 
 import board
 import game_controllers.keyboard_controller as kb_ctrl
-# TODO : web controller + smartphone controller
+# TODO : smartphone controller
 import json
 import requests
 import socket
@@ -57,6 +57,9 @@ class Game():
         self.game_controller = game_controller()
         self.nick = nick
         self.size = size
+
+    def __enter__(self):
+        return self
 
     def end(self):
         """Returns True if the game is finished"""
@@ -163,6 +166,13 @@ class Game():
             self.game_over_animation()
         return self.score
 
+    def close(self):
+        if hasattr(self.game_controller, 'close'):
+            self.game_controller.close()
+
+    def __exit__(self, type, value, traceback):
+        self.close()
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
@@ -174,7 +184,8 @@ if __name__ == "__main__":
     try:
         while True:
             nick = raw_input("Nick ? ")
-            Game((HOST, PORT), kb_ctrl.KeyboardController, nick).loop()
+            with Game((HOST, PORT), kb_ctrl.KeyboardController, nick) as game:
+                game.loop()
     except KeyboardInterrupt:
         print("\nExit…")
         sys.exit()

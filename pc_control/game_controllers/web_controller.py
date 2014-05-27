@@ -24,11 +24,11 @@ class WebServerThread(multiprocessing.Process):
     def run(self):
         @self.app.route('/<filename:path>')
         def send_static(filename):
-            return static_file(filename, root='../../frontend')
+            return static_file(filename, root='../frontend')
 
         @self.app.route('/')
         def send_static_index():
-            return static_file('index.html', root='../../frontend')
+            return static_file('index.html', root='../frontend')
 
         @self.app.route('/communicate')
         def get():
@@ -51,5 +51,6 @@ class WebController():
         return self.queue.get()
 
     def close(self):
-        self.webserver_thread.terminate()
-        self.webserver_thread.join()
+        if self.webserver_thread.is_alive():
+            self.webserver_thread.terminate()
+            self.webserver_thread.join()
