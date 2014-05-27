@@ -133,6 +133,20 @@ GameManager.prototype.move = function (direction) {
 
   if (this.isGameTerminated()) return; // Don't do anything if the game's over
 
+  var r = new XMLHttpRequest();
+  var moves = ['UP', 'RIGHT', 'DOWN', 'LEFT']
+      r.open("GET", "/communicate", false);
+  r.onreadystatechange = function () {
+      if (r.readyState != 4) {
+          return;
+      }
+      if (r.status != 200 || r.responseText != "ACK") {
+          alert("Unable to communicate with the LEDs");
+          return;
+      }
+  }
+  r.send("move="+moves[direction]);
+
   var cell, tile;
 
   var vector     = this.getVector(direction);
