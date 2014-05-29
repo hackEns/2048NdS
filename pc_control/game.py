@@ -21,7 +21,6 @@
 
 import board
 import game_controllers.keyboard_controller as kb_ctrl
-# TODO : smartphone controller
 import json
 import requests
 import socket
