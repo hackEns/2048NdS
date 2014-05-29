@@ -16,6 +16,7 @@
 # accessible only from the game server at localhost:8080.
 
 import multiprocessing
+import os
 from bottle import Bottle, static_file, request
 
 
@@ -25,16 +26,19 @@ class WebServerThread(multiprocessing.Process):
         multiprocessing.Process.__init__(self)
         self.app = Bottle()
         self.queue = queue
+        self.path = os.path.dirname(os.path.realpath(__file__))
 
     def run(self):
         """Serve the webapp with bottle, and handle moves sent via JS"""
         @self.app.route('/<filename:path>')
         def send_static(filename):
-            return static_file(filename, root='../frontend')
+            return static_file(filename,
+                               root=(self.path + "/../../frontend"))
 
         @self.app.route('/')
         def send_static_index():
-            return static_file('index.html', root='../frontend')
+            return static_file('index.html',
+                               root=(self.path + "/../../frontend"))
 
         @self.app.route('/communicate')
         def get():
