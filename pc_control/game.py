@@ -22,6 +22,7 @@
 import board
 import game_controllers.keyboard_controller as kb_ctrl
 import json
+import predefined_colors
 import requests
 import socket
 import sys
