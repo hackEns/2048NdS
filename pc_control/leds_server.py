@@ -23,12 +23,13 @@ import tools
 class Server(SocketServer.ThreadingTCPServer):
     """Custom SocketServer class to use extra args"""
     def __init__(self, server_address, RequestHandlerClass,
-                 serial_port, nb_leds, brightness):
+                 serial_port, nb_leds, brightness, corrections):
         SocketServer.ThreadingTCPServer.__init__(self, server_address,
                                                  RequestHandlerClass)
         self.serial_port = serial_port
         self.nb_leds = nb_leds
         self.brightness = brightness
+        self.corrections = corrections
 
 
 class ServerHandler(SocketServer.StreamRequestHandler):
@@ -36,7 +37,8 @@ class ServerHandler(SocketServer.StreamRequestHandler):
         SocketServer.StreamRequestHandler.setup(self)
         self.control = control.Control(self.server.serial_port,
                                        self.server.nb_leds,
-                                       brightness=self.server.brightness)
+                                       brightness=self.server.brightness,
+                                       corrections=self.corrections)
 
     def handle(self):
         self.data = self.rfile.readline().strip()
@@ -69,13 +71,14 @@ if __name__ == '__main__':
     PORT = 4242
     nb_leds = 9
     brightness = 1.0
+    corrections = {'r': 1.0, 'g': 1.0, 'b': 1.0}
 
     if len(sys.argv) < 2:
         print("Usage: "+sys.argv[0]+" SERIAL_PORT")
         sys.exit()
 
     server = Server((HOST, PORT), ServerHandler, sys.argv[1],
-                    nb_leds, brightness)
+                    nb_leds, brightness, corrections)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

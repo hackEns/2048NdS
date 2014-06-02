@@ -71,6 +71,11 @@ class Game():
         """
         self.score += points
 
+    def get_linear_led_number(self, x, y):
+        """Returns the led number, position in the linear chain, to send the
+        number to the LED server"""
+        return self.size*x + y
+
     def save_score(self):
         """Saves the current score"""
         with open(self.SCORES_FILE, 'a') as fh:
@@ -99,7 +104,8 @@ class Game():
     def get_diff(self):
         """Returns the difference between previous and current state"""
         data = {"fading": False, "colors": {}}
-        data["colors"] = {self.size*k['x']+k['y']: self.COLORS[k["value"]]
+        data["colors"] = {self.get_linear_led_number(k['x'], k['y']):
+                          self.COLORS[k["value"]]
                           for k in self.brd.get_diff()}
         return data
 
