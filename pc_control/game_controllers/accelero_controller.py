@@ -32,7 +32,7 @@ class UDPHandler(SocketServer.BaseRequestHandler):
 class ServerThread(multiprocessing.Process):
     """Thread to handle the webserver"""
     def __init__(self, queue):
-        self.HOST, self.PORT = "localhost", 4243
+        self.HOST, self.PORT = "localhost", 5555
         multiprocessing.Process.__init__(self)
         self.queue = queue
 
