@@ -19,16 +19,17 @@ import colors
 import math
 import matplotlib.pyplot as plt
 import numpy as np
-import predefined_colors
 from matplotlib import animation
+from predefined_colors import *
 
 
 if __name__ == '__main__':
     # Parameters
-    start_color = {'r': 255, 'g': 0, 'b': 0}
-    end_color = {'r': 0, 'g': 0, 'b': 0}
+    start_color = rose
+    end_color = black
     nb_leds = 9
     duration = 3
+    end_color_duration = 2
     filename = "output.mp4"
     # End
 
@@ -40,7 +41,9 @@ if __name__ == '__main__':
     writer = Writer(fps=25, bitrate=1800)
 
     fading = colors.fading(start_color, end_color, iterations)
-    images = [np.zeros((size, size, 3), np.uint8) for _ in range(iterations)]
+    images = [np.zeros((size, size, 3), np.uint8) for _ in
+              range(iterations+end_color_duration * 25)]
+    fading.extend([end_color for _ in range(end_color_duration * 25)])
 
     count = 0
     for img in range(len(images)):
@@ -60,8 +63,9 @@ if __name__ == '__main__':
         im.set_array(images[i])
         return im,
 
-    anim = animation.FuncAnimation(fig, animate, frames=duration * 25,
+    anim = animation.FuncAnimation(fig, animate, frames=(duration+
+                                                         end_color_duration) * 25,
                                    interval=1000/25,
                                    blit=True)
-    plt.show()
+    #plt.show()
     anim.save(filename, writer=writer)
