@@ -26,6 +26,7 @@ import predefined_colors
 import requests
 import socket
 import sys
+import time
 import tools
 
 
@@ -93,13 +94,53 @@ class Game():
 
     def won_animation(self):
         """Handle the animation when the player wins"""
-        # TODO
-        raise Exception("TODO")
+        # Go to rose
+        self.send_instructions({'fading': True,
+                                'fading_duration': 3,
+                                'colors': [predefined_colors.rose
+                                           for _ in range(self.size**2)]
+                                })
+        # Wait 3s
+        time.sleep(6)
+        # Go to black
+        self.send_instructions({'fading': True,
+                                'fading_duration': 3,
+                                'colors': [predefined_colors.black
+                                           for _ in range(self.size**2)]
+                                })
+        # Wait 7s
+        time.sleep(10)
+        # Go to green
+        self.send_instructions({'fading': True,
+                                'fading_duration': 3,
+                                'colors': [predefined_colors.green
+                                           for _ in range(self.size**2)]
+                                })
 
     def game_over_animation(self):
         """Handle the animation when the player looses"""
-        # TODO
-        raise Exception("TODO")
+        # Go to rose
+        self.send_instructions({'fading': True,
+                                'fading_duration': 3,
+                                'colors': [predefined_colors.rose
+                                           for _ in range(self.size**2)]
+                                })
+        # Wait 3s
+        time.sleep(6)
+        # Go to black
+        self.send_instructions({'fading': True,
+                                'fading_duration': 3,
+                                'colors': [predefined_colors.black
+                                           for _ in range(self.size**2)]
+                                })
+        # Wait 7s
+        time.sleep(10)
+        # Go to red
+        self.send_instructions({'fading': True,
+                                'fading_duration': 3,
+                                'colors': [predefined_colors.red
+                                           for _ in range(self.size**2)]
+                                })
 
     def get_diff(self):
         """Returns the difference between previous and current state"""

@@ -19,17 +19,17 @@ import colors
 import math
 import matplotlib.pyplot as plt
 import numpy as np
+import predefined_colors
 from matplotlib import animation
-from predefined_colors import *
 
 
 if __name__ == '__main__':
     # Parameters
-    start_color = rose
-    end_color = black
+    start_color = predefined_colors.black
+    end_color = predefined_colors.red
     nb_leds = 9
     duration = 3
-    end_color_duration = 2
+    end_color_duration = 10
     filename = "output.mp4"
     # End
 
@@ -63,9 +63,9 @@ if __name__ == '__main__':
         im.set_array(images[i])
         return im,
 
-    anim = animation.FuncAnimation(fig, animate, frames=(duration+
-                                                         end_color_duration) * 25,
+    anim = animation.FuncAnimation(fig, animate,
+                                   frames=(duration + end_color_duration) * 25,
                                    interval=1000/25,
                                    blit=True)
-    #plt.show()
+    # plt.show()
     anim.save(filename, writer=writer)

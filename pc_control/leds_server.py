@@ -25,7 +25,7 @@ class Server(SocketServer.TCPServer):
     def __init__(self, server_address, RequestHandlerClass,
                  serial_port, nb_leds, brightness, corrections):
         SocketServer.TCPServer.__init__(self, server_address,
-                                                 RequestHandlerClass)
+                                        RequestHandlerClass)
         self.serial_port = serial_port
         self.nb_leds = nb_leds
         self.brightness = brightness
