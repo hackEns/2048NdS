@@ -20,11 +20,11 @@ import sys
 import tools
 
 
-class Server(SocketServer.ThreadingTCPServer):
+class Server(SocketServer.TCPServer):
     """Custom SocketServer class to use extra args"""
     def __init__(self, server_address, RequestHandlerClass,
                  serial_port, nb_leds, brightness, corrections):
-        SocketServer.ThreadingTCPServer.__init__(self, server_address,
+        SocketServer.TCPServer.__init__(self, server_address,
                                                  RequestHandlerClass)
         self.serial_port = serial_port
         self.nb_leds = nb_leds
