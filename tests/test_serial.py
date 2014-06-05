@@ -13,11 +13,11 @@
 # -----------------------------------------------------------------------------
 # "THE NO-ALCOHOL BEER-WARE LICENSE" (Revision 42):
 # Phyks (webmaster@phyks.me) wrote or updated these files for hackEns. As long
-# as you retain this notice you can do whatever you want with this stuff 
-# (and you can also do whatever you want with this stuff without retaining it, 
+# as you retain this notice you can do whatever you want with this stuff
+# (and you can also do whatever you want with this stuff without retaining it,
 # but that's not cool...).
 #
-# If we meet some day, and you think this stuff is worth it, you can buy us a 
+# If we meet some day, and you think this stuff is worth it, you can buy us a
 # <del>beer</del> soda in return.
 #                                                       Phyks for hackEns
 # -----------------------------------------------------------------------------
@@ -28,7 +28,7 @@ import time
 import sys
 
 
-def main(ser):
+def main(ser, start, end):
     for k in range(start, end):
         for j in [0x80+k, 127, 0, 0]:
             ser.write(chr(j))
@@ -55,6 +55,6 @@ if __name__ == '__main__':
         sys.exit("Unable to open serial port.")
 
     try:
-        main(ser)
+        main(ser, sys.argv[2], sys.argv[3])
     except:
         ser.close()
