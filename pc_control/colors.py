@@ -25,7 +25,7 @@ def rgb255_to_hsv(color):
     returns: a color dict
     """
     color = {k: color[k] / 255.0 for k in color}
-    color_out = {'t': 0.0, 's': 0.0, 'v': 0.0}
+    color_out = {'h': 0.0, 's': 0.0, 'v': 0.0}
 
     M = max([color[i] for i in color])
     m = min([color[i] for i in color])
