@@ -142,7 +142,7 @@ void fading(RGBColor src_color, RGBColor dest_color, int nb_steps) {
     float step_size_s = float(dest_color_hsv.s - src_color_hsv.s) / nb_steps;
     float step_size_v = float(dest_color_hsv.v - src_color_hsv.v) / nb_steps;
 
-    for(int i = 0; i < nb_steps + 1; ++i) {
+    for(int i = 0; i < nb_steps + 1; i++) {
         current_color.h = src_color_hsv.h + i * step_size_h;
         current_color.s = src_color_hsv.s + i * step_size_s;
         current_color.v = src_color_hsv.v + i * step_size_v;
