@@ -22,7 +22,7 @@
 import board
 import game_controllers.keyboard_controller as kb_ctrl
 import json
-import predefined_colors
+import predefined_colors as pc
 import requests
 import socket
 import sys
@@ -35,16 +35,16 @@ class Game():
     accordingly
     """
     COLORS = {
-        0: {'r': 0, 'g': 0, 'b': 0},
-        2: {'r': 255, 'g': 255, 'b': 255},
-        4: {'r': 255, 'g': 255, 'b': 255},
-        8: {'r': 255, 'g': 255, 'b': 255},
-        16: {'r': 255, 'g': 255, 'b': 255},
-        32: {'r': 255, 'g': 255, 'b': 255},
-        64: {'r': 255, 'g': 255, 'b': 255},
-        128: {'r': 255, 'g': 255, 'b': 255},
-        256: {'r': 255, 'g': 255, 'b': 255},
-        512: {'r': 255, 'g': 255, 'b': 255}
+        0: pc.black,
+        2: pc.yellow,
+        4: pc.blue,
+        8: pc.orange,
+        16: pc.green,
+        32: pc.brown,
+        64: pc.purple,
+        128: pc.white,
+        256: pc.rose,
+        512: pc.skyblue
     }
     SCORES_FILE = "scores.dat"
     REMOTE_SCORES_URL = "http://hackens.org/NdS/"
