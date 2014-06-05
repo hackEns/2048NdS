@@ -55,6 +55,6 @@ if __name__ == '__main__':
         sys.exit("Unable to open serial port.")
 
     try:
-        main(ser, sys.argv[2], sys.argv[3])
+        main(ser, int(sys.argv[2]), int(sys.argv[3]))
     except:
         ser.close()
