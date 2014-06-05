@@ -1,3 +1,4 @@
+
 /* This code runs on the LEDs PCB and handles the serial communication and
  * correct colors display.
  *
@@ -44,7 +45,7 @@ const int pins[3] = {9, 10, 11};
 
 
 struct HSVColor rgb255_to_hsv(struct RGBColor color_in) {
-    RGBColorFloat color = {color_in.r / 255, color_in.g / 255, color_in.b / 255};
+    RGBColorFloat color = {float(color_in.r) / 255, float(color_in.g) / 255, float(color_in.b) / 255};
     HSVColor color_out = {0, 0, 0};
 
     float M = max(color.r, max(color.g, color.b));
@@ -86,39 +87,39 @@ RGBColor hsv_to_rgb255(HSVColor color) {
 
     switch(qd) {
         case 0:
-            color_out.r = color.v;
-            color_out.g = n;
-            color_out.b = l;
+            color_out.r = 255*color.v;
+            color_out.g = 255*n;
+            color_out.b = 255*l;
             break;
 
         case 1:
-            color_out.r = m;
-            color_out.g = color.v;
-            color_out.b = l;
+            color_out.r = 255*m;
+            color_out.g = 255*color.v;
+            color_out.b = 255*l;
             break;
 
         case 2:
-            color_out.r = l;
-            color_out.g = color.v;
-            color_out.b = n;
+            color_out.r = 255*l;
+            color_out.g = 255*color.v;
+            color_out.b = 255*n;
             break;
 
         case 3:
-            color_out.r = l;
-            color_out.g = m;
-            color_out.b = color.v;
+            color_out.r = 255*l;
+            color_out.g = 255*m;
+            color_out.b = 255*color.v;
             break;
 
         case 4:
-            color_out.r = n;
-            color_out.g = l;
-            color_out.b = color.v;
+            color_out.r = 255*n;
+            color_out.g = 255*l;
+            color_out.b = 255*color.v;
             break;
 
         case 5:
-            color_out.r = color.v;
-            color_out.g = l;
-            color_out.b = m;
+            color_out.r = 255*color.v;
+            color_out.g = 255*l;
+            color_out.b = 255*m;
             break;
     }
     return color_out;
@@ -139,6 +140,7 @@ void fading(RGBColor src_color, RGBColor dest_color, int nb_steps) {
         current_color.s = src_color_hsv.s + i * step_size_s;
         current_color.v = src_color_hsv.v + i * step_size_v;
         show_color(hsv_to_rgb255(current_color));
+        delay(40);
     }
 }
 
