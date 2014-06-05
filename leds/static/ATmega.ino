@@ -126,6 +126,13 @@ RGBColor hsv_to_rgb255(HSVColor color) {
 }
 
 
+void show_color(RGBColor color) {
+    analogWrite(pins[R], (int) (color.r * corrections.r));
+    analogWrite(pins[G], (int) (color.g * corrections.g));
+    analogWrite(pins[B], (int) (color.b * corrections.b));
+}
+
+
 void fading(RGBColor src_color, RGBColor dest_color, int nb_steps) {
     HSVColor src_color_hsv = rgb255_to_hsv(src_color);
     HSVColor dest_color_hsv = rgb255_to_hsv(dest_color);
@@ -142,13 +149,6 @@ void fading(RGBColor src_color, RGBColor dest_color, int nb_steps) {
         show_color(hsv_to_rgb255(current_color));
         delay(40);
     }
-}
-
-
-void show_color(RGBColor color) {
-    analogWrite(pins[R], (int) (color.r * corrections.r));
-    analogWrite(pins[G], (int) (color.g * corrections.g));
-    analogWrite(pins[B], (int) (color.b * corrections.b));
 }
 
 
