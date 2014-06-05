@@ -38,7 +38,7 @@ class ServerHandler(SocketServer.StreamRequestHandler):
         self.control = control.Control(self.server.serial_port,
                                        self.server.nb_leds,
                                        brightness=self.server.brightness,
-                                       corrections=self.corrections)
+                                       corrections=self.server.corrections)
 
     def handle(self):
         self.data = self.rfile.readline().strip()

@@ -174,7 +174,10 @@ class Game():
             data = json.dumps(data) + "\n"
             sock.sendall(data)
             received = sock.recv(1024)
-            if int(received) != len(data.strip()):
+            try:
+                if int(received) != len(data.strip()):
+                    tools.error("Error while sending instructions for LEDs")
+            except:
                 tools.error("Error while sending instructions for LEDs")
         finally:
             sock.close()
