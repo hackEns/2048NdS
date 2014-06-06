@@ -130,18 +130,18 @@ class Control():
         if fading is not False:
             if isinstance(fading, (int, long)):
                 steps = {int(id): colors.fading(self.current_colors[int(id)],
-                                                colors_in[int(id)],
+                                                colors_in[id],
                                                 fading)
                          for id in colors_in}
                 wait = float(fading_duration) / fading
             else:
                 steps = {int(id): colors.fading(self.current_colors[int(id)],
-                                                colors_in[int(id)],
+                                                colors_in[id],
                                                 self.nb_steps_fading)
                          for id in colors_in}
                 wait = float(fading_duration) / self.nb_steps_fading
         else:
-            steps = {int(id): [colors_in[int(id)]] for id in colors_in}
+            steps = {int(id): [colors_in[id]] for id in colors_in}
             wait = 0
 
         for k in xrange(len(steps[steps.iterkeys().next()])):
