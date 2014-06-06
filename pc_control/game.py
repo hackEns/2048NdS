@@ -110,24 +110,24 @@ class Game():
         # Go to rose
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [pc.rose
-                                           for _ in range(self.size**2)]
+                                'colors': {i: pc.rose
+                                           for i in range(self.size**2)}
                                 })
         # Wait 3s
         time.sleep(6)
         # Go to black
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [pc.black
-                                           for _ in range(self.size**2)]
+                                'colors': {i: pc.black
+                                           for i in range(self.size**2)}
                                 })
         # Wait 7s
         time.sleep(10)
         # Go to green
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [pc.green
-                                           for _ in range(self.size**2)]
+                                'colors': {i: pc.green
+                                           for i in range(self.size**2)}
                                 })
 
     def game_over_animation(self):
@@ -135,24 +135,24 @@ class Game():
         # Go to rose
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [pc.rose
-                                           for _ in range(self.size**2)]
+                                'colors': {i: pc.rose
+                                           for i in range(self.size**2)}
                                 })
         # Wait 3s
         time.sleep(6)
         # Go to black
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [pc.black
-                                           for _ in range(self.size**2)]
+                                'colors': {i: pc.black
+                                           for i in range(self.size**2)}
                                 })
         # Wait 7s
         time.sleep(10)
         # Go to red
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [pc.red
-                                           for _ in range(self.size**2)]
+                                'colors': {i: pc.red
+                                           for i in range(self.size**2)}
                                 })
 
     def get_diff(self):
