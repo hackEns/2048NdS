@@ -41,6 +41,13 @@ import sys
 import time
 import tools
 
+try:
+    import secret
+    api_key = secret.api_key
+except:
+    api_key = ''
+    pass
+
 
 class Game():
     """The class that handles the game itself and send instructions to the LEDs
@@ -60,7 +67,7 @@ class Game():
     }
     SCORES_FILE = "scores.dat"
     REMOTE_SCORES_URL = "http://hackens.org/NdS/"
-    REMOTE_SCORES_PARAMS = {'api_key': "API_KEY"}
+    REMOTE_SCORES_PARAMS = {'api_key': api_key}
 
     def __init__(self, server_address, game_controller, nick,
                  goal=256, size=3):
