@@ -59,7 +59,7 @@ class Game():
         4: pc.blue,
         8: pc.orange,
         16: pc.green,
-        32: pc.brown,
+        32: pc.red,
         64: pc.purple,
         128: pc.white,
         256: pc.rose,
