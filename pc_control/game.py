@@ -21,7 +21,7 @@
 
 import board
 # Keyboard controller, uncomment to use
-# import game_controllers.keyboard_controller as ctrl
+import game_controllers.keyboard_controller as ctrl
 
 # Android controller, uncomment to use
 # import game_controllers.accelero_controller as ctrl
@@ -30,7 +30,7 @@ import board
 # import game_controllers.web_controller as ctrl
 
 # Joystick controller, uncomment to use
-import game_controllers.joystick_controller as ctrl
+# import game_controllers.joystick_controller as ctrl
 
 import json
 import nick_selection
