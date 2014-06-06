@@ -21,10 +21,10 @@
 
 import board
 # Keyboard controller, uncomment to use
-# import game_controllers.keyboard_controller as ctrl
+import game_controllers.keyboard_controller as ctrl
 
 # Android controller, uncomment to use
-import game_controllers.accelero_controller as ctrl
+# import game_controllers.accelero_controller as ctrl
 
 # Web controller, uncomment to use
 # import game_controllers.web_controller as ctrl
@@ -115,6 +115,7 @@ class Game():
 
     def won_animation(self):
         """Handle the animation when the player wins"""
+        time.sleep(3)
         # Go to rose
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
@@ -140,6 +141,7 @@ class Game():
 
     def game_over_animation(self):
         """Handle the animation when the player looses"""
+        time.sleep(3)
         # Go to rose
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
