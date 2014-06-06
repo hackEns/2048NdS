@@ -216,3 +216,4 @@ class Board(object):
             print "\n",
             print "---------",
             print "\n",
+        print "\n",
