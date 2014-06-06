@@ -87,7 +87,7 @@ class Game():
     def get_linear_led_number(self, x, y):
         """Returns the led number, position in the linear chain, to send the
         number to the LED server"""
-        pos = [[7, 6, 5], [8, 0, 4], [1, 2, 3]]
+        pos = [[7, 8, 1], [6, 0, 2], [5, 4, 3]]
         return pos[x][y]
 
     def save_score(self):
@@ -243,7 +243,7 @@ if __name__ == "__main__":
         tools.error("Usage: "+sys.argv[0]+" SERVER_IP")
         sys.exit(1)
     HOST = sys.argv[1]
-    PORT = 22
+    PORT = 4242
 
     try:
         while True:
