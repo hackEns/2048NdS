@@ -31,12 +31,12 @@ class NickThread(multiprocessing.Process):
         @self.app.route('/<filename:path>')
         def send_static(filename):
             return static_file(filename,
-                               root=(self.path + "/../../frontend_nick"))
+                               root=(self.path + "/../frontend_nick"))
 
         @self.app.route('/')
         def send_static_index():
             return static_file('index.html',
-                               root=(self.path + "/../../frontend_nick"))
+                               root=(self.path + "/../frontend_nick"))
 
         @self.app.route('/communicate')
         def get():
