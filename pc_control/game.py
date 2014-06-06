@@ -33,7 +33,7 @@ import board
 import game_controllers.joystick_controller as ctrl
 
 import json
-#import nick_selection
+import nick_selection
 import predefined_colors as pc
 import requests
 import socket
@@ -247,8 +247,7 @@ if __name__ == "__main__":
 
     try:
         while True:
-            #nick = nick_selection.get_nick()
-            nick = raw_input("Nick ? ")
+            nick = nick_selection.get_nick()
             with Game((HOST, PORT), ctrl.Controller, nick) as game:
                 game.loop()
     except KeyboardInterrupt:
