@@ -58,6 +58,7 @@ class Nick():
 
     def get(self):
         """Method to get the nick, blocking until a move is done"""
+        os.system("clear")
         print("Launch your browser at http://localhost:8080 to enter nick")
         return self.queue.get()
 
