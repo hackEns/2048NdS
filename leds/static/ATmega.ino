@@ -40,7 +40,7 @@ struct HSVColor {
 const struct RGBColor red = {255, 0, 0};
 const struct RGBColor rose = {232, 30, 116};
 const struct RGBColor black = {0, 0, 0};
-const struct RGBColorFloat corrections = {1, 1, 1};
+const struct RGBColorFloat corrections = {0.863, 1, 0.863};
 const int pins[3] = {9, 10, 11};
 
 

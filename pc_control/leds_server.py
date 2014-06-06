@@ -71,7 +71,7 @@ if __name__ == '__main__':
     PORT = 4242
     nb_leds = 9
     brightness = 1.0
-    corrections = {'r': 1.0, 'g': 1.0, 'b': 1.0}
+    corrections = {'r': 0.863, 'g': 1.0, 'b': 0.863}
 
     if len(sys.argv) < 2:
         print("Usage: "+sys.argv[0]+" SERIAL_PORT")

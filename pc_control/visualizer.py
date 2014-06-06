@@ -26,7 +26,7 @@ from matplotlib import animation
 if __name__ == '__main__':
     # Parameters
     start_color = predefined_colors.black
-    end_color = predefined_colors.red
+    end_color = predefined_colors.rose
     nb_leds = 9
     duration = 3
     end_color_duration = 10
@@ -67,5 +67,5 @@ if __name__ == '__main__':
                                    frames=(duration + end_color_duration) * 25,
                                    interval=1000/25,
                                    blit=True)
-    # plt.show()
+    plt.show()
     anim.save(filename, writer=writer)
