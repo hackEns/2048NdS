@@ -211,8 +211,8 @@ class Board(object):
         """Print the board nicely"""
         for x in xrange(self.__size):
             for y in xrange(self.__size):
-                print(self.cells[y][x])
-                print(" | ")
-            print("\n")
-            print("---------")
-            print("\n")
+                print(self.cells[y][x], end="")
+                print(" | ", end="")
+            print("\n", end="")
+            print("---------", end="")
+            print("\n", end="")
