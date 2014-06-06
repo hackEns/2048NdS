@@ -24,10 +24,14 @@ import board
 # import game_controllers.keyboard_controller as kb_ctrl
 
 # Android controller, uncomment to use
-import accelero_controller as kb_ctrl
+# import accelero_controller as kb_ctrl
 
 # Web controller, uncomment to use
 # import web_controller as kb_ctrl
+
+# Joystick controller, uncomment to use
+import joystick_controller as kb_ctrl
+
 import json
 import predefined_colors as pc
 import requests
