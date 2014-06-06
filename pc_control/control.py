@@ -118,7 +118,7 @@ class Control():
         self.current_colors[id] = color
 
     def send_colors(self, colors_in, starting=0, fading=False,
-                    fading_duration=1):
+                    fading_duration=1.0):
         """Send colors instruction to a bunch of LEDs
 
         Params:
@@ -128,18 +128,18 @@ class Control():
             * fading_duration is the total duration of the fading
         """
         if fading is not False:
-            if isinstance(fading, (int, long)):
+            if fading is not True and isinstance(fading, (int, long)):
                 steps = {int(id): colors.fading(self.current_colors[int(id)],
                                                 colors_in[id],
                                                 fading)
                          for id in colors_in}
-                wait = float(fading_duration) / fading
+                wait = 1.0 / fading
             else:
                 steps = {int(id): colors.fading(self.current_colors[int(id)],
                                                 colors_in[id],
-                                                self.nb_steps_fading)
+                                                self.nb_steps_fading*fading_duration)
                          for id in colors_in}
-                wait = float(fading_duration) / self.nb_steps_fading
+                wait = 1.0 / self.nb_steps_fading
         else:
             steps = {int(id): [colors_in[id]] for id in colors_in}
             wait = 0
