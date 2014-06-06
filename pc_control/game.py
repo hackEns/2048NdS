@@ -217,7 +217,9 @@ class Game():
         while True:
             if self.end():
                 break
-            self.send_instructions(self.get_diff())
+            diff = self.get_diff()
+            print(diff)
+            self.send_instructions(diff())
             m = self.readMove()
             self.update_score(self.brd.move(m))
         self.save_score()
