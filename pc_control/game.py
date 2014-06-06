@@ -75,7 +75,8 @@ class Game():
     def get_linear_led_number(self, x, y):
         """Returns the led number, position in the linear chain, to send the
         number to the LED server"""
-        return self.size*x + y
+        pos = [[1, 2, 3], [6, 5, 4], [7, 8, 9]]
+        return pos[x][y]
 
     def save_score(self):
         """Saves the current score"""
