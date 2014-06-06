@@ -206,3 +206,6 @@ class Board(object):
                 if self.cells[y][x] != self.old_cells[y][x]:
                     diff.append({'x': x, 'y': y, "value": self.cells[y][x]})
         return diff
+
+    def print(self):
+        """Print the board nicely"""

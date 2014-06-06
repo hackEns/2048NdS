@@ -40,7 +40,7 @@ class MyUDPServer(SocketServer.ThreadingUDPServer):
 class ServerThread(multiprocessing.Process):
     """Thread to handle the webserver"""
     def __init__(self, queue):
-        self.HOST, self.PORT = "localhost", 5555
+        self.HOST, self.PORT = "192.168.43.139", 5555
         multiprocessing.Process.__init__(self)
         self.queue = queue
 
