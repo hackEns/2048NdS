@@ -29,6 +29,14 @@ class UDPHandler(SocketServer.BaseRequestHandler):
         self.server.queue.put(data)
 
 
+class MyUDPServer(SocketServer.ThreadingUDPServer):
+    def __init__(self, server_address, RequestHandlerClass, queue):
+        SocketServer.ThreadingUDPServer.__init__(self,
+                                                 server_address,
+                                                 RequestHandlerClass)
+        self.queue = queue
+
+
 class ServerThread(multiprocessing.Process):
     """Thread to handle the webserver"""
     def __init__(self, queue):
@@ -39,7 +47,8 @@ class ServerThread(multiprocessing.Process):
     def run(self):
         """Run the SocketServer waiting for instructions"""
         try:
-            server = SocketServer.UDPServer((self.HOST, self.PORT), UDPHandler)
+            server = MyUDPServer((self.HOST, self.PORT), UDPHandler,
+                                 self.queue)
             server.serve_forever()
         except Exception, ex:
             print ex
