@@ -18,6 +18,7 @@
 # -----------------------------------------------------------------------------
 
 import random
+from sys import stdout
 
 
 class Board(object):
@@ -209,14 +210,16 @@ class Board(object):
 
     def print_brd(self):
         """Print the board nicely"""
+        print "-------------"
         for x in xrange(self.__size):
+            stdout.write("|")
             for y in xrange(self.__size):
-                print self.cells[y][x],
-                print " | ",
-            print "\n",
-            print "--------------------------",
-            print "\n",
-        print "\n",
+                stdout.write('{:3}'.format(int(self.cells[x][y])))
+                stdout.write("|")
+            stdout.write("\n")
+            stdout.write("-------------")
+            stdout.write("\n")
+        stdout.write("\n")
 
     def max_tile(self):
         """Returns the max value on the board"""

@@ -130,7 +130,7 @@ class Game():
                                            for i in range(self.size**2)}
                                 })
         # Wait 7s
-        time.sleep(10)
+        time.sleep(2)
         # Go to green
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
@@ -155,7 +155,7 @@ class Game():
                                            for i in range(self.size**2)}
                                 })
         # Wait 7s
-        time.sleep(10)
+        time.sleep(2)
         # Go to red
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
