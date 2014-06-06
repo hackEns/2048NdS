@@ -69,13 +69,12 @@ class Game():
     REMOTE_SCORES_URL = "http://hackens.org/NdS/"
     REMOTE_SCORES_PARAMS = {'api_key': api_key}
 
-    def __init__(self, server_address, game_controller, nick,
+    def __init__(self, server_address, game_controller,
                  goal=256, size=3):
         self.brd = board.Board(goal=goal, size=size)
         self.score = 0
         self.server_address = server_address
         self.game_controller = game_controller()
-        self.nick = nick
         self.size = size
 
     def __enter__(self):
@@ -99,12 +98,13 @@ class Game():
 
     def save_score(self):
         """Saves the current score"""
+        nick = nick_selection.get_nick()
         with open(self.SCORES_FILE, 'a') as fh:
-            fh.write(self.nick+"\t"+str(self.score))
+            fh.write(nick+"\t"+str(self.score))
         # Send to remote server
         params = self.REMOTE_SCORES_PARAMS
         params["do"] = "add"
-        params["nick"] = self.nick
+        params["nick"] = nick
         params["score"] = self.score
         try:
             r = requests.get(self.REMOTE_SCORES_URL, params=params)
@@ -244,10 +244,10 @@ class Game():
                                     'colors': {i: pc.black
                                                for i in range(self.size**2)}
                                     })
-            time.sleep(0.5)
+            time.sleep(0.1)
             self.send_instructions({'fading': False,
                                     'colors': self.current_status()})
-            time.sleep(1)
+            time.sleep(0.5)
 
         if self.brd.won():
             print('You won')
@@ -275,8 +275,7 @@ if __name__ == "__main__":
 
     try:
         while True:
-            nick = nick_selection.get_nick()
-            with Game((HOST, PORT), ctrl.Controller, nick) as game:
+            with Game((HOST, PORT), ctrl.Controller) as game:
                 game.loop()
     except KeyboardInterrupt:
         print("\nExit…")
