@@ -103,6 +103,7 @@ class Game():
             fh.write(self.nick+"\t"+str(self.score))
         # Send to remote server
         params = self.REMOTE_SCORES_PARAMS
+        params["do"] = "add"
         params["nick"] = self.nick
         params["score"] = self.score
         try:
