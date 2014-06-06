@@ -68,7 +68,7 @@ else:
         return __key_aliases.get(k, k)
 
 
-class KeyboardController():
+class Controller():
     """Controller class"""
     def get(self):
         """Method to get the next move (blocking until a move is returned)"""

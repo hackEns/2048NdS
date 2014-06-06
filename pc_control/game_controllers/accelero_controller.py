@@ -45,7 +45,7 @@ class ServerThread(multiprocessing.Process):
             print ex
 
 
-class AcceleroController():
+class Controller():
     """Controller class"""
     def __init__(self):
         self.queue = multiprocessing.Queue()

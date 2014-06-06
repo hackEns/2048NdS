@@ -32,7 +32,7 @@ class JoystickControllerThread(multiprocessing.Process):
                         self.queue.put("RIGHT")
 
 
-class JoystickController():
+class Controller():
     """Controller class"""
     def __init__(self):
         pygame.init()

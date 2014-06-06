@@ -51,7 +51,7 @@ class WebServerThread(multiprocessing.Process):
             print ex
 
 
-class WebController():
+class Controller():
     """Controller class"""
     def __init__(self):
         self.queue = multiprocessing.Queue()

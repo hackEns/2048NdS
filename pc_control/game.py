@@ -21,18 +21,19 @@
 
 import board
 # Keyboard controller, uncomment to use
-# import game_controllers.keyboard_controller as kb_ctrl
+# import game_controllers.keyboard_controller as ctrl
 
 # Android controller, uncomment to use
-# import accelero_controller as kb_ctrl
+# import game_controllers.accelero_controller as ctrl
 
 # Web controller, uncomment to use
-# import web_controller as kb_ctrl
+# import game_controllers.web_controller as ctrl
 
 # Joystick controller, uncomment to use
-import joystick_controller as kb_ctrl
+import game_controllers.joystick_controller as ctrl
 
 import json
+#import nick_selection
 import predefined_colors as pc
 import requests
 import socket
@@ -246,8 +247,9 @@ if __name__ == "__main__":
 
     try:
         while True:
+            #nick = nick_selection.get_nick()
             nick = raw_input("Nick ? ")
-            with Game((HOST, PORT), kb_ctrl.KeyboardController, nick) as game:
+            with Game((HOST, PORT), ctrl.Controller, nick) as game:
                 game.loop()
     except KeyboardInterrupt:
         print("\nExit…")
