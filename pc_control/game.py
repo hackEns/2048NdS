@@ -21,10 +21,10 @@
 
 import board
 # Keyboard controller, uncomment to use
-# import game_controllers.keyboard_controller as ctrl
+import game_controllers.keyboard_controller as ctrl
 
 # Android controller, uncomment to use
-import game_controllers.accelero_controller as ctrl
+# import game_controllers.accelero_controller as ctrl
 
 # Web controller, uncomment to use
 # import game_controllers.web_controller as ctrl
@@ -236,7 +236,6 @@ class Game():
             m = self.readMove()
             self.update_score(self.brd.move(m))
             self.brd.print_brd()
-        self.save_score()
         print("Valeur la plus élévée: "+str(self.brd.max_tile()))
 
         for i in range(3):
@@ -255,6 +254,7 @@ class Game():
         else:
             print('Game over')
             self.game_over_animation()
+        self.save_score()
         return self.score
 
     def close(self):
@@ -275,8 +275,9 @@ if __name__ == "__main__":
 
     try:
         while True:
+            print("Let's go !")
             with Game((HOST, PORT), ctrl.Controller) as game:
-                game.loop()
+                print("Score " + str(game.loop()))
     except KeyboardInterrupt:
         print("\nExit…")
         sys.exit()
