@@ -227,7 +227,7 @@ class Game():
             self.send_instructions(self.get_diff())
             m = self.readMove()
             self.update_score(self.brd.move(m))
-            self.brd.print()
+            self.brd.print_brd()
         self.save_score()
         if self.brd.won():
             print('You won')

@@ -207,5 +207,12 @@ class Board(object):
                     diff.append({'x': x, 'y': y, "value": self.cells[y][x]})
         return diff
 
-    def print(self):
+    def print_brd(self):
         """Print the board nicely"""
+        for x in xrange(self.__size):
+            for y in xrange(self.__size):
+                print(self.cells[y][x])
+                print(" | ")
+            print("\n")
+            print("---------")
+            print("\n")
