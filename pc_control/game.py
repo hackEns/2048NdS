@@ -21,10 +21,10 @@
 
 import board
 # Keyboard controller, uncomment to use
-import game_controllers.keyboard_controller as ctrl
+# import game_controllers.keyboard_controller as ctrl
 
 # Android controller, uncomment to use
-# import game_controllers.accelero_controller as ctrl
+import game_controllers.accelero_controller as ctrl
 
 # Web controller, uncomment to use
 # import game_controllers.web_controller as ctrl
@@ -232,6 +232,7 @@ class Game():
             self.update_score(self.brd.move(m))
             self.brd.print_brd()
         self.save_score()
+        print("Valeur la plus élévée: "+str(self.brd.max_tile()))
         if self.brd.won():
             print('You won')
             self.won_animation()

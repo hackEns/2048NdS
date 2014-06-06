@@ -214,6 +214,15 @@ class Board(object):
                 print self.cells[y][x],
                 print " | ",
             print "\n",
-            print "---------",
+            print "--------------------------",
             print "\n",
         print "\n",
+
+    def max_tile(self):
+        """Returns the max value on the board"""
+        max_tile = 0
+        for x in xrange(self.__size):
+            for y in xrange(self.__size):
+                if self.cells[y][x] > max_tile:
+                    max_tile = self.cells[y][x]
+        return max_tile
