@@ -209,12 +209,14 @@ class Board(object):
 
     def print_brd(self):
         """Print the board nicely"""
+        print "-------------",
         for x in xrange(self.__size):
+            print "|",
             for y in xrange(self.__size):
-                print self.cells[y][x],
-                print " | ",
+                print '{:3}'.format(self.cells[y][x]),
+                print "|",
             print "\n",
-            print "--------------------------",
+            print "-------------",
             print "\n",
         print "\n",
 
