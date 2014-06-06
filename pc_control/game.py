@@ -98,7 +98,7 @@ class Game():
         # Go to rose
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [predefined_colors.rose
+                                'colors': [pc.rose
                                            for _ in range(self.size**2)]
                                 })
         # Wait 3s
@@ -106,7 +106,7 @@ class Game():
         # Go to black
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [predefined_colors.black
+                                'colors': [pc.black
                                            for _ in range(self.size**2)]
                                 })
         # Wait 7s
@@ -114,7 +114,7 @@ class Game():
         # Go to green
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [predefined_colors.green
+                                'colors': [pc.green
                                            for _ in range(self.size**2)]
                                 })
 
@@ -123,7 +123,7 @@ class Game():
         # Go to rose
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [predefined_colors.rose
+                                'colors': [pc.rose
                                            for _ in range(self.size**2)]
                                 })
         # Wait 3s
@@ -131,7 +131,7 @@ class Game():
         # Go to black
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [predefined_colors.black
+                                'colors': [pc.black
                                            for _ in range(self.size**2)]
                                 })
         # Wait 7s
@@ -139,7 +139,7 @@ class Game():
         # Go to red
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
-                                'colors': [predefined_colors.red
+                                'colors': [pc.red
                                            for _ in range(self.size**2)]
                                 })
 
