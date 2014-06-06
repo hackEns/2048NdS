@@ -105,7 +105,10 @@ class Control():
 
         for step in steps:
             data += [0x80 + id]
-            data.extend(v for k, v in self.correct_color(step).iteritems())
+            tmp_color = self.correct_color(step)
+            data.append(tmp_color['r'])
+            data.append(tmp_color['g'])
+            data.append(tmp_color['b'])
 
         for i in xrange(len(data)):
             self.ser.write(chr(data[i]))
