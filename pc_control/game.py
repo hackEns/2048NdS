@@ -232,6 +232,7 @@ class Game():
             self.update_score(self.brd.move(m))
             self.brd.print_brd()
         self.save_score()
+        print("Valeur la plus élévée: "+str(self.brd.max_tile()))
         if self.brd.won():
             print('You won')
             self.won_animation()
