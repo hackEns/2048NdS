@@ -88,6 +88,7 @@ class Control():
         default number of intermediate steps or just True.
         """
         data = []
+        id = int(id)
         if fading is not False:
             if isinstance(fading, (int, long)):
                 steps = colors.fading(self.current_colors[id],
@@ -116,7 +117,8 @@ class Control():
                 time.sleep(wait)
         self.current_colors[id] = color
 
-    def send_colors(self, colors_in, starting=0, fading=False, fading_duration=1):
+    def send_colors(self, colors_in, starting=0, fading=False,
+                    fading_duration=1):
         """Send colors instruction to a bunch of LEDs
 
         Params:
@@ -127,19 +129,19 @@ class Control():
         """
         if fading is not False:
             if isinstance(fading, (int, long)):
-                steps = {int(id): colors.fading(self.current_colors[id],
-                                                colors_in[id],
+                steps = {int(id): colors.fading(self.current_colors[int(id)],
+                                                colors_in[int(id)],
                                                 fading)
                          for id in colors_in}
                 wait = float(fading_duration) / fading
             else:
-                steps = {int(id): colors.fading(self.current_colors[id],
-                                                colors_in[id],
+                steps = {int(id): colors.fading(self.current_colors[int(id)],
+                                                colors_in[int(id)],
                                                 self.nb_steps_fading)
                          for id in colors_in}
                 wait = float(fading_duration) / self.nb_steps_fading
         else:
-            steps = {int(id): [colors_in[id]] for id in colors_in}
+            steps = {int(id): [colors_in[int(id)]] for id in colors_in}
             wait = 0
 
         for k in xrange(len(steps[steps.iterkeys().next()])):
