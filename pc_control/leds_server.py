@@ -68,7 +68,7 @@ class ServerHandler(SocketServer.StreamRequestHandler):
 
 if __name__ == '__main__':
     HOST = ''
-    PORT = 4242
+    PORT = 22
     nb_leds = 9
     brightness = 1.0
     corrections = {'r': 0.863, 'g': 1.0, 'b': 0.863}

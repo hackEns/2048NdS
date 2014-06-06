@@ -231,7 +231,7 @@ if __name__ == "__main__":
         tools.error("Usage: "+sys.argv[0]+" SERVER_IP")
         sys.exit(1)
     HOST = sys.argv[1]
-    PORT = 4242
+    PORT = 22
 
     try:
         while True:
