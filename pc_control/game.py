@@ -115,7 +115,6 @@ class Game():
 
     def won_animation(self):
         """Handle the animation when the player wins"""
-        time.sleep(3)
         # Go to rose
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
@@ -141,7 +140,6 @@ class Game():
 
     def game_over_animation(self):
         """Handle the animation when the player looses"""
-        time.sleep(3)
         # Go to rose
         self.send_instructions({'fading': True,
                                 'fading_duration': 3,
@@ -221,6 +219,13 @@ class Game():
         else:
             return 0
 
+    def current_status(self):
+        tmp = self.brd.current_status()
+        out = {}
+        for coords in tmp:
+            out[self.get_linear_led_number(coords[0], coords[1])] = self.COLORS[tmp[coords]]
+        return out
+
     def loop(self):
         """Main loop"""
         self.send_instructions(self.initialize_leds())
@@ -233,6 +238,17 @@ class Game():
             self.brd.print_brd()
         self.save_score()
         print("Valeur la plus élévée: "+str(self.brd.max_tile()))
+
+        for i in range(3):
+            self.send_instructions({'fading': False,
+                                    'colors': {i: pc.black
+                                               for i in range(self.size**2)}
+                                    })
+            time.sleep(0.5)
+            self.send_instructions({'fading': False,
+                                    'colors': self.current_status()})
+            time.sleep(1)
+
         if self.brd.won():
             print('You won')
             self.won_animation()

@@ -209,7 +209,7 @@ class Board(object):
 
     def print_brd(self):
         """Print the board nicely"""
-        print "-------------",
+        print "-------------"
         for x in xrange(self.__size):
             print "|",
             for y in xrange(self.__size):
@@ -228,3 +228,11 @@ class Board(object):
                 if self.cells[y][x] > max_tile:
                     max_tile = self.cells[y][x]
         return max_tile
+
+    def current_status(self):
+        """Returns the current board for LEDs"""
+        out = {}
+        for x in xrange(self.__size):
+            for y in xrange(self.__size):
+                out[(x, y)] = self.cells[y][x]
+        return out
