@@ -24,6 +24,8 @@ import board
 import game_controllers.keyboard_controller as ctrl
 
 # Android controller, uncomment to use
+# Use this code on the Android device :
+# http://git.hackens.org/2048NdS_android_controller/
 # import game_controllers.accelero_controller as ctrl
 
 # Web controller, uncomment to use
