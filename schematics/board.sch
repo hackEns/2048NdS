@@ -9271,6 +9271,9 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <wire x1="-7.62" y1="40.64" x2="-7.62" y2="60.96" width="0.1524" layer="91"/>
 <pinref part="POWER" gate="G$1" pin="1"/>
 <wire x1="-7.62" y1="60.96" x2="-12.7" y2="60.96" width="0.1524" layer="91"/>
+<pinref part="IC1" gate="G$1" pin="AVCC"/>
+<wire x1="53.34" y1="78.74" x2="22.86" y2="78.74" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="78.74" x2="22.86" y2="40.64" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$3" class="0">
@@ -9361,7 +9364,7 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 </sheet>
 </sheets>
 <errors>
-<approved hash="204,1,53.34,78.74,IC1,AVCC,,,,"/>
+<approved hash="104,1,53.34,78.74,IC1,AVCC,VCC,,,"/>
 <approved hash="113,1,-12.4171,61.0912,POWER,,,,,"/>
 <approved hash="113,1,96.7571,96.6512,JP3,,,,,"/>
 </errors>
