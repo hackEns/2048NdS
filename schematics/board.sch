@@ -9022,13 +9022,15 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <part name="M2" library="hackens" deviceset="PSMN017-30EL" device="L-V" value="PSMN017-30EL"/>
 <part name="M3" library="hackens" deviceset="PSMN017-30EL" device="L-V" value="PSMN017-30EL"/>
 <part name="POWER" library="pinhead" deviceset="PINHD-1X2" device=""/>
+<part name="JP3" library="pinhead" deviceset="PINHD-1X2" device=""/>
+<part name="GND9" library="supply1" deviceset="GND" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
 </plain>
 <instances>
-<instance part="IC1" gate="G$1" x="78.74" y="60.96"/>
+<instance part="IC1" gate="G$1" x="76.2" y="60.96"/>
 <instance part="10KO-1" gate="G$1" x="127" y="104.14"/>
 <instance part="10KO-2" gate="G$1" x="127" y="66.04"/>
 <instance part="10KO-3" gate="G$1" x="127" y="25.4"/>
@@ -9063,6 +9065,8 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <instance part="M2" gate="G$1" x="147.32" y="68.58"/>
 <instance part="M3" gate="G$1" x="144.78" y="27.94"/>
 <instance part="POWER" gate="G$1" x="-10.16" y="58.42"/>
+<instance part="JP3" gate="G$1" x="99.06" y="93.98"/>
+<instance part="GND9" gate="1" x="83.82" y="93.98" rot="R270"/>
 </instances>
 <busses>
 </busses>
@@ -9071,12 +9075,11 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <segment>
 <pinref part="GND4" gate="1" pin="GND"/>
 <pinref part="IC1" gate="G$1" pin="GND"/>
-<wire x1="50.8" y1="83.82" x2="55.88" y2="83.82" width="0.1524" layer="91"/>
+<wire x1="50.8" y1="83.82" x2="53.34" y2="83.82" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="IC1" gate="G$1" pin="GND@1"/>
 <pinref part="GND5" gate="1" pin="GND"/>
-<wire x1="55.88" y1="58.42" x2="53.34" y2="58.42" width="0.1524" layer="91"/>
 </segment>
 <segment>
 <pinref part="0.1UF-2" gate="G$1" pin="2"/>
@@ -9137,6 +9140,11 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <pinref part="22PF-1" gate="G$1" pin="1"/>
 <wire x1="27.94" y1="76.2" x2="33.02" y2="76.2" width="0.1524" layer="91"/>
 </segment>
+<segment>
+<pinref part="JP3" gate="G$1" pin="2"/>
+<wire x1="96.52" y1="93.98" x2="86.36" y2="93.98" width="0.1524" layer="91"/>
+<pinref part="GND9" gate="1" pin="GND"/>
+</segment>
 </net>
 <net name="N$5" class="0">
 <segment>
@@ -9144,7 +9152,7 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <pinref part="IC1" gate="G$1" pin="PC6(/RESET)"/>
 <wire x1="10.16" y1="88.9" x2="15.24" y2="88.9" width="0.1524" layer="91"/>
 <pinref part="10KO-4" gate="G$1" pin="2"/>
-<wire x1="15.24" y1="88.9" x2="55.88" y2="88.9" width="0.1524" layer="91"/>
+<wire x1="15.24" y1="88.9" x2="53.34" y2="88.9" width="0.1524" layer="91"/>
 <wire x1="15.24" y1="50.8" x2="15.24" y2="88.9" width="0.1524" layer="91"/>
 <junction x="15.24" y="88.9"/>
 </segment>
@@ -9212,7 +9220,7 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <net name="N$13" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB1(OC1A)"/>
-<wire x1="104.14" y1="40.64" x2="116.84" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="40.64" x2="116.84" y2="40.64" width="0.1524" layer="91"/>
 <wire x1="116.84" y1="40.64" x2="116.84" y2="104.14" width="0.1524" layer="91"/>
 <pinref part="10KO-1" gate="G$1" pin="1"/>
 <wire x1="116.84" y1="104.14" x2="121.92" y2="104.14" width="0.1524" layer="91"/>
@@ -9222,7 +9230,7 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB2(SS/OC1B)"/>
 <pinref part="10KO-2" gate="G$1" pin="1"/>
-<wire x1="104.14" y1="38.1" x2="121.92" y2="38.1" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="38.1" x2="121.92" y2="38.1" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="38.1" x2="121.92" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -9230,7 +9238,7 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB3(MOSI/OC2)"/>
 <pinref part="10KO-3" gate="G$1" pin="1"/>
-<wire x1="104.14" y1="35.56" x2="121.92" y2="35.56" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="35.56" x2="121.92" y2="35.56" width="0.1524" layer="91"/>
 <wire x1="121.92" y1="35.56" x2="121.92" y2="25.4" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -9245,8 +9253,8 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <pinref part="100UF" gate="G$1" pin="1"/>
 <wire x1="22.86" y1="40.64" x2="22.86" y2="35.56" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="VCC@1"/>
-<wire x1="22.86" y1="40.64" x2="55.88" y2="40.64" width="0.1524" layer="91"/>
-<wire x1="55.88" y1="40.64" x2="55.88" y2="53.34" width="0.1524" layer="91"/>
+<wire x1="22.86" y1="40.64" x2="53.34" y2="40.64" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="40.64" x2="53.34" y2="53.34" width="0.1524" layer="91"/>
 <junction x="22.86" y="40.64"/>
 <pinref part="SUPPLY2" gate="G$1" pin="VCC"/>
 <wire x1="-7.62" y1="40.64" x2="7.62" y2="40.64" width="0.1524" layer="91"/>
@@ -9280,13 +9288,13 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <wire x1="-25.4" y1="104.14" x2="109.22" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="109.22" y1="104.14" x2="109.22" y2="63.5" width="0.1524" layer="91"/>
 <pinref part="IC1" gate="G$1" pin="PD1(TXD)"/>
-<wire x1="109.22" y1="63.5" x2="104.14" y2="63.5" width="0.1524" layer="91"/>
+<wire x1="109.22" y1="63.5" x2="101.6" y2="63.5" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$12" class="0">
 <segment>
 <pinref part="IC1" gate="G$1" pin="PD0(RXD)"/>
-<wire x1="104.14" y1="66.04" x2="106.68" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="101.6" y1="66.04" x2="106.68" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="106.68" y1="66.04" x2="106.68" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="106.68" y1="99.06" x2="-27.94" y2="99.06" width="0.1524" layer="91"/>
 <wire x1="-27.94" y1="99.06" x2="-27.94" y2="83.82" width="0.1524" layer="91"/>
@@ -9314,7 +9322,7 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB6(XTAL1/TOSC1)"/>
 <pinref part="HC49" gate="G$1" pin="1"/>
-<wire x1="55.88" y1="71.12" x2="43.18" y2="71.12" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="71.12" x2="43.18" y2="71.12" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="71.12" x2="43.18" y2="76.2" width="0.1524" layer="91"/>
 <junction x="43.18" y="71.12"/>
 <pinref part="22PF-1" gate="G$1" pin="2"/>
@@ -9325,7 +9333,7 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <segment>
 <pinref part="IC1" gate="G$1" pin="PB7(XTAL2/TOSC2)"/>
 <pinref part="HC49" gate="G$1" pin="2"/>
-<wire x1="55.88" y1="66.04" x2="43.18" y2="66.04" width="0.1524" layer="91"/>
+<wire x1="53.34" y1="66.04" x2="43.18" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="43.18" y1="66.04" x2="43.18" y2="58.42" width="0.1524" layer="91"/>
 <junction x="43.18" y="66.04"/>
 <pinref part="22PF-2" gate="G$1" pin="1"/>
@@ -9340,11 +9348,22 @@ Source : http://www.farnell.com/datasheets/1596017.pdf
 <wire x1="149.86" y1="114.3" x2="139.7" y2="114.3" width="0.1524" layer="91"/>
 </segment>
 </net>
+<net name="N$19" class="0">
+<segment>
+<pinref part="IC1" gate="G$1" pin="PC5(ADC5/SCL)"/>
+<wire x1="101.6" y1="76.2" x2="104.14" y2="76.2" width="0.1524" layer="91"/>
+<wire x1="104.14" y1="76.2" x2="104.14" y2="96.52" width="0.1524" layer="91"/>
+<pinref part="JP3" gate="G$1" pin="1"/>
+<wire x1="104.14" y1="96.52" x2="96.52" y2="96.52" width="0.1524" layer="91"/>
+</segment>
+</net>
 </nets>
 </sheet>
 </sheets>
 <errors>
-<approved hash="204,1,55.88,78.74,IC1,AVCC,,,,"/>
+<approved hash="204,1,53.34,78.74,IC1,AVCC,,,,"/>
+<approved hash="113,1,-12.4171,61.0912,POWER,,,,,"/>
+<approved hash="113,1,96.7571,96.6512,JP3,,,,,"/>
 </errors>
 </schematic>
 </drawing>
